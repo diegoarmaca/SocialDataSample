@@ -93,9 +93,8 @@ def replace_nominal_codes(data: np.array, column_name: str, codes: Tuple[Tuple[s
     >>> CCHS['biosex'][-1]
     'M'
     '''
-    for i in range(len(codes)):
-        data[column_name] = np.where(data[column_name] == codes[i][0], codes[i][1], data[column_name])
-     
+    for subtuple in codes:
+        data[column_name][data[column_name]==subtuple[0]] = subtuple[1] 
         
         
         
@@ -113,8 +112,7 @@ def replace_missing_with_nan(data: np.array, column_name: str, missing_codes: Tu
     '''
     
     for code in missing_codes:
-        data[column_name] = np.where(data[column_name] == code, 'nan', data[column_name])
-        
+        data[column_name][data[column_name] == code] = 'nan'        
         
         
 def write_categorical_csv(data: np.array, column_name: str, outfile: TextIO) -> None:
