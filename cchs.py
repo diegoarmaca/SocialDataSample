@@ -1,4 +1,3 @@
-import csv 
 import numpy as np
 from typing import Tuple, TextIO
 
@@ -148,13 +147,13 @@ def write_column_summary_csv(data: np.array, column_name: str, outfile: TextIO) 
     
     '''
 
-    median = str(round(np.nanmedian(data[column_name]), 2))
-    if str(data[column_name].dtype).startswith("int"):
-        outfile.write(column_name + "," + median + ",," +'\n')
-    if str(data[column_name].dtype).startswith("float"):
-        mean = str(round(np.nanmean(data[column_name]), 2))
-        stdev = str(round(np.nanstd(data[column_name]),2))
-        outfile.write(column_name + "," + median + ',' + mean + ',' + stdev +'\n')
+    median = str(round(np.nanmedian(data[column_name]), 4))
+    if str(data[column_name].dtype).startswith('int'):
+        outfile.write(column_name + ',' + median + ',,\n')
+    if str(data[column_name].dtype).startswith('float'):
+        mean = str(round(np.nanmean(data[column_name]), 4))
+        stdev = str(round(np.nanstd(data[column_name]), 4))
+        outfile.write(column_name + ',' + median + ',' + mean + ',' + stdev + '\n')
 
 if __name__ == "__main__":
     
